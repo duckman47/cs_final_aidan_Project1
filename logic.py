@@ -5,7 +5,6 @@ import os
 
 class Logic(QMainWindow, Ui_MainWindow):
     def __init__(self):
-        self.__setup=0
         super().__init__()
         self.setupUi(self)
         self.pushButton.clicked.connect(lambda:self.submit())
