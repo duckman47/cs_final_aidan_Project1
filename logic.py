@@ -19,7 +19,7 @@ class Logic(QMainWindow, Ui_MainWindow):
             with open('vote.csv', mode='r', newline='') as f:
                 file = reader(f)
                 for row in file:
-                    ids_counted.append(row[1])
+                    ids_counted.append(row[0])
         else:
             ids_counted=[]
         if vid != "":
