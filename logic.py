@@ -10,7 +10,7 @@ class Logic(QMainWindow, Ui_MainWindow):
         self.pushButton.clicked.connect(lambda:self.submit())
 
     def submit(self):
-        vid=self.lineEdit_2.text().strip()
+        voter_id=self.lineEdit_2.text().strip()
         write_in = self.lineEdit.text().strip()
         vote = ""
         if os.path.isfile("vote.csv"):
@@ -18,12 +18,13 @@ class Logic(QMainWindow, Ui_MainWindow):
             with open('vote.csv', mode='r', newline='') as f:
                 file = reader(f)
                 for row in file:
-                    ids_counted.append(row[0])
+                    if len(row) > 0 and row[0] != "":
+                        ids_counted.append(row[0])
         else:
             ids_counted=[]
-        if vid != "":
-            if vid.isdigit():
-                if vid not in ids_counted:
+        if voter_id != "":
+            if voter_id.isdigit():
+                if voter_id not in ids_counted:
                     if self.radioButton.isChecked():
                         vote = "john"
                         self.radioButton.setChecked(False)
@@ -52,7 +53,7 @@ class Logic(QMainWindow, Ui_MainWindow):
         if vote != "":
 
             header=["Voter ID","Vote"]
-            info=[vid,vote]
+            info=[voter_id,vote]
             if os.path.isfile("vote.csv"):
                 with open('vote.csv', 'a', newline='') as f:
                     w = writer(f)
