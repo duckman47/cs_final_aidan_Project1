@@ -10,6 +10,9 @@ class Logic(QMainWindow, Ui_MainWindow):
         self.pushButton.clicked.connect(lambda:self.submit())
 
     def submit(self):
+        """
+        submits vote
+        """
         voter_id=self.lineEdit_2.text().strip()
         write_in = self.lineEdit.text().strip()
         vote = ""
